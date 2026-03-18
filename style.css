@@ -1,0 +1,80 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: white;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.container {
+  width: 400px;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.add-habit input {
+  padding: 10px;
+  width: 65%;
+  border: none;
+  border-radius: 8px;
+}
+
+.add-habit button {
+  padding: 10px;
+  border: none;
+  background: #22c55e;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+li {
+  background: #1e293b;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button.done {
+  background: #3b82f6;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+.ai-box {
+  margin-top: 30px;
+  background: #1e293b;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.ai-box input {
+  width: 70%;
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+}
+
+.ai-box button {
+  padding: 8px;
+  border: none;
+  background: #a855f7;
+  color: white;
+  border-radius: 6px;
+}
