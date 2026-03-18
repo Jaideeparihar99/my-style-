@@ -6,15 +6,55 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="container">
+    <h1>📊 Habit Tracker</h1>
 
-  <h1>Habit Tracker</h1>
+    <!-- Statistics Section -->
+    <div class="stats-section">
+      <div class="stat-card">
+        <h3>Total Habits</h3>
+        <p id="totalHabits">0</p>
+      </div>
+      <div class="stat-card">
+        <h3>Completed Today</h3>
+        <p id="completedToday">0</p>
+      </div>
+      <div class="stat-card">
+        <h3>Completion Rate</h3>
+        <p id="completionRate">0%</p>
+      </div>
+    </div>
 
-  <div class="input-section">
-    <input type="text" id="habitInput" placeholder="Enter a habit">
-    <button onclick="addHabit()">Add</button>
+    <!-- Progress Bar -->
+    <div class="progress-section">
+      <h3>Overall Progress</h3>
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+    </div>
+
+    <!-- Input Section -->
+    <div class="input-section">
+      <input type="text" id="habitInput" placeholder="Enter a habit">
+      <button onclick="addHabit()" class="btn-add">Add Habit</button>
+    </div>
+
+    <!-- Habits List -->
+    <ul id="habitList"></ul>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeEditModal()">&times;</span>
+        <h2>Edit Habit</h2>
+        <input type="text" id="editInput" placeholder="New habit name">
+        <div class="modal-buttons">
+          <button onclick="saveEdit()" class="btn-save">Save</button>
+          <button onclick="closeEditModal()" class="btn-cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <ul id="habitList"></ul>
 
   <script src="script.js"></script>
 </body>
