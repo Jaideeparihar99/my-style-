@@ -8,41 +8,38 @@ function renderHabits() {
     const li = document.createElement("li");
 
     li.innerHTML = `
-      ${habit.name} 🔥 ${habit.streak}
-      <button class="done" onclick="completeHabit(${index})">Done</button>
+      <span onclick="toggleHabit(${index})" class="${habit.done ? 'completed' : ''}">
+        ${habit.name}
+      </span>
+      <button onclick="deleteHabit(${index})">❌</button>
     `;
 
     list.appendChild(li);
   });
+
+  localStorage.setItem("habits", JSON.stringify(habits));
 }
 
 function addHabit() {
   const input = document.getElementById("habitInput");
-  if (input.value === "") return;
+  const value = input.value.trim();
 
-  habits.push({ name: input.value, streak: 0 });
-  localStorage.setItem("habits", JSON.stringify(habits));
+  if (value === "") return;
 
+  habits.push({ name: value, done: false });
   input.value = "";
+
   renderHabits();
 }
 
-function completeHabit(index) {
-  habits[index].streak++;
-  localStorage.setItem("habits", JSON.stringify(habits));
+function toggleHabit(index) {
+  habits[index].done = !habits[index].done;
   renderHabits();
 }
 
-// Fake AI (for now)
-function askAI() {
-  const input = document.getElementById("aiInput").value;
-  const output = document.getElementById("aiOutput");
-
-  if (input.includes("habit")) {
-    output.innerText = "Try waking up early, exercising, and reading daily!";
-  } else {
-    output.innerText = "Stay consistent bro 💪";
-  }
+function deleteHabit(index) {
+  habits.splice(index, 1);
+  renderHabits();
 }
 
 // Load on start
