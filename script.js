@@ -5,6 +5,15 @@ let habits = [];
 
 const today = new Date().toDateString();
 
+// Scroll effect for white overlay
+window.addEventListener('scroll', function() {
+  if (window.scrollY > 50) {
+    document.body.classList.add('scrolled');
+  } else {
+    document.body.classList.remove('scrolled');
+  }
+});
+
 // Check if user is logged in on page load
 window.addEventListener("DOMContentLoaded", function() {
   const savedUser = localStorage.getItem("currentUser");
