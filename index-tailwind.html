@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Habit Tracker - Premium</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Animated Background */
+    @keyframes sway {
+      0%, 100% { transform: translateX(-50%) rotate(0deg); }
+      50% { transform: translateX(-50%) rotate(2deg); }
+    }
+
+    @keyframes fall {
+      0% {
+        top: -30px;
+        opacity: 0;
+        transform: translateX(0) rotateZ(0deg);
+      }
+      10% { opacity: 0.7; }
+      90% { opacity: 0.7; }
+      100% {
+        top: 100vh;
+        opacity: 0;
+        transform: translateX(100px) rotateZ(360deg);
+      }
+    }
+
+    .tree-foliage {
+      animation: sway 3s ease-in-out infinite;
+    }
+
+    .leaf {
+      animation: fall linear infinite;
+      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+    }
+
+    .leaf:nth-child(1) { animation-duration: 12s; animation-delay: 0s; }
+    .leaf:nth-child(2) { animation-duration: 14s; animation-delay: 2s; }
+    .leaf:nth-child(3) { animation-duration: 16s; animation-delay: 4s; }
+    .leaf:nth-child(4) { animation-duration: 15s; animation-delay: 1s; }
+    .leaf:nth-child(5) { animation-duration: 17s; animation-delay: 3s; }
+    .leaf:nth-child(6) { animation-duration: 13s; animation-delay: 0.5s; }
+    .leaf:nth-child(7) { animation-duration: 15s; animation-delay: 2.5s; }
+    .leaf:nth-child(8) { animation-duration: 16s; animation-delay: 1.5s; }
+    .leaf:nth-child(9) { animation-duration: 14s; animation-delay: 3.5s; }
+    .leaf:nth-child(10) { animation-duration: 15s; animation-delay: 2s; }
+
+    /* Scroll Overlay */
+    body.scrolled::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.3);
+      pointer-events: none;
+      z-index: 40;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Glassmorphism */
+    .glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Smooth transitions */
+    * {
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden">
+  <!-- Animated Background -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <!-- Dark gradient background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-black"></div>
+    
+    <!-- Tree -->
+    <div class="absolute bottom-0 right-[5%] w-40 h-48 opacity-60">
+      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-20 bg-gradient-to-b from-amber-700 to-amber-900 rounded"></div>
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-gradient-to-b from-emerald-600 to-emerald-800 rounded-full tree-foliage shadow-2xl" style="box-shadow: inset -10px -10px 20px rgba(0, 0, 0, 0.3)"></div>
+    </div>
+
+    <!-- Falling Leaves -->
+    <div class="absolute w-full h-full">
+      <div class="leaf absolute w-5 h-5 left-[10%] bg-gradient-to-br from-orange-400 to-red-600 rounded-full"></div>
+      <div class="leaf absolute w-6 h-6 left-[15%] bg-gradient-to-br from-orange-400 to-red-600 rounded-full"></div>
+      <div class="leaf absolute w-5 h-5 left-[25%] bg-gradient-to-br from-orange-400 to-red-600 rounded-full"></div>
+      <div class="leaf absolute w-5 h-5 left-[35%] bg-gradient-to-br from-orange-400 to-red-600 rounded-full"></div>
+      <div class="leaf absolute w-6 h-6 left-[50%] bg-gradient-to-br from-orange-400 to-red-600 rounded-full"></div>
+      <div class="leaf absolute w-5 h-5 left-[60%] bg-gradient-to-br from-orange-400 to-red-600 rounded-full"></div>
+      <div class="leaf absolute w-6 h-6 left-[70%] bg-gradient-to-br from-orange-400 to-red-600 rounded-full"></div>
+      <div class="leaf absolute w-5 h-5 left-[80%] bg-gradient-to-br from-orange-400 to-red-600 rounded-full"></div>
+      <div class="leaf absolute w-5 h-5 left-[85%] bg-gradient-to-br from-orange-400 to-red-600 rounded-full"></div>
+      <div class="leaf absolute w-6 h-6 left-[92%] bg-gradient-to-br from-orange-400 to-red-600 rounded-full"></div>
+    </div>
+  </div>
+
+  <!-- Login Section -->
+  <div id="loginSection" class="fixed inset-0 flex items-center justify-center p-4 z-50">
+    <div class="glass rounded-2xl p-12 w-full max-w-md shadow-2xl">
+      <h1 class="text-4xl font-bold text-white mb-2 text-center">🌟 Habit Tracker</h1>
+      <p class="text-cyan-200 text-center mb-8">Track daily habits & build consistency</p>
+
+      <form id="loginForm" class="space-y-4">
+        <div>
+          <label class="block text-sm font-semibold text-slate-200 mb-2">Username</label>
+          <input type="text" id="username" placeholder="Enter username" required
+            class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50">
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-slate-200 mb-2">Password</label>
+          <input type="password" id="password" placeholder="Enter password" required
+            class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50">
+        </div>
+
+        <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold py-3 rounded-lg hover:shadow-lg hover:shadow-cyan-500/50 transform hover:-translate-y-1">
+          Login
+        </button>
+      </form>
+
+      <p class="text-slate-400 text-center mt-6">New user? <button type="button" class="text-cyan-400 font-semibold hover:text-cyan-300" onclick="toggleSignup()">Sign up</button></p>
+
+      <div id="signupForm" class="hidden mt-8 pt-8 border-t border-white/20 space-y-4">
+        <h3 class="text-white font-semibold">Create Account</h3>
+        <input type="text" id="signupUsername" placeholder="Choose username" required
+          class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50">
+        <input type="password" id="signupPassword" placeholder="Create password" required
+          class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50">
+        <div class="flex gap-3">
+          <button type="button" class="flex-1 bg-emerald-600 text-white font-semibold py-3 rounded-lg hover:bg-emerald-700" onclick="handleSignup()">Sign Up</button>
+          <button type="button" class="flex-1 bg-slate-700 text-white font-semibold py-3 rounded-lg hover:bg-slate-600" onclick="toggleSignup()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main App -->
+  <div id="appSection" class="hidden min-h-screen pt-8 pb-16 relative z-10">
+    <div class="max-w-4xl mx-auto px-4">
+      <!-- Header -->
+      <div class="flex justify-between items-center mb-12">
+        <h1 class="text-4xl font-bold text-white">📊 Habit Tracker</h1>
+        <button onclick="logout()" class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 font-semibold">Logout</button>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="grid md:grid-cols-3 gap-6 mb-10">
+        <div class="glass rounded-xl p-8 text-center">
+          <div class="text-5xl font-bold text-cyan-300 mb-2" id="totalHabits">0</div>
+          <p class="text-slate-300 font-semibold">Total Habits</p>
+        </div>
+        <div class="glass rounded-xl p-8 text-center">
+          <div class="text-5xl font-bold text-emerald-300 mb-2" id="completedToday">0</div>
+          <p class="text-slate-300 font-semibold">Completed Today</p>
+        </div>
+        <div class="glass rounded-xl p-8 text-center">
+          <div class="text-5xl font-bold text-cyan-300 mb-2" id="completionRate">0%</div>
+          <p class="text-slate-300 font-semibold">Completion Rate</p>
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="glass rounded-xl p-6 mb-10">
+        <p class="text-white font-semibold mb-3">Overall Progress</p>
+        <div class="w-full bg-white/10 rounded-full h-8 overflow-hidden border border-white/20">
+          <div id="progressBar" class="bg-gradient-to-r from-blue-500 to-cyan-500 h-full flex items-center justify-center text-white text-sm font-semibold transition-all duration-400" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- Add Habit -->
+      <div class="flex gap-3 mb-8">
+        <input type="text" id="habitInput" placeholder="Add a new habit..." 
+          class="flex-1 px-4 py-3 rounded-lg glass text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50">
+        <button onclick="addHabit()" class="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-8 py-3 rounded-lg hover:shadow-lg hover:shadow-cyan-500/50 font-semibold transform hover:-translate-y-1">
+          Add
+        </button>
+      </div>
+
+      <!-- Habits List -->
+      <div id="habitList" class="space-y-3">
+        <!-- Habits will be inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <script src="script-tailwind.js"></script>
+</body>
+</html>
